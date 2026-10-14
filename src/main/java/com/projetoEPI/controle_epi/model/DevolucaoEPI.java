@@ -45,4 +45,5 @@ public class DevolucaoEPI {
 	   @Column(name = "criado_em", nullable = false)
 	   private LocalDateTime criadoEm = LocalDateTime.now();
 
+
 }
