@@ -2,9 +2,29 @@ package com.projetoEPI.controle_epi.dto;
 
 import java.time.LocalDate;
 
-import com.projetoEPI.controle_epi.model.EntregaEPI;
+import com.projetoEPI.controle_epi.model.DevolucaoEPI;
 
-// dados que saem da API
-public record DevolucaoEPIResponseDTO(EntregaEPI entrega, Integer quantidade, LocalDate dataEntrega, String condicao, String observacao) {
-	
+public record DevolucaoEPIResponseDTO(
+        Long id,
+        EntregaEPIResponseDTO entrega,
+        Integer quantidade,
+        LocalDate dataDevolucao,
+        String condicao,
+        String observacao
+) {
+
+    public static DevolucaoEPIResponseDTO fromEntity(
+            DevolucaoEPI devolucao) {
+
+        return new DevolucaoEPIResponseDTO(
+                devolucao.getId(),
+                EntregaEPIResponseDTO.fromEntity(
+                        devolucao.getEntrega()
+                ),
+                devolucao.getQuantidade(),
+                devolucao.getDataEntrega(),
+                devolucao.getCondicao(),
+                devolucao.getObservacao()
+        );
+    }
 }
